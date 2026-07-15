@@ -1,6 +1,6 @@
 import { getProfile } from '@/lib/db';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 export async function GET() {
   const profile = await getProfile().catch(() => null);
@@ -11,7 +11,7 @@ export async function GET() {
   return new Response(svg, {
     headers: {
       'Content-Type': 'image/svg+xml',
-      'Cache-Control': 'public, max-age=3600',
+      'Cache-Control': 'public, max-age=3600, s-maxage=0',
     },
   });
 }
